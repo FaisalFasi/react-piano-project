@@ -3,7 +3,7 @@ import * as Tone from "tone";
 const PianoKey = (props) => {
   const note = props.note;
   const synth = new Tone.Synth().toDestination();
-  console.log(note);
+
   const playSound = () => {
     synth.triggerAttackRelease(note, "8n");
   };
