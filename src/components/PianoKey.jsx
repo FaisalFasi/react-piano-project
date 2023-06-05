@@ -1,5 +1,5 @@
 import * as Tone from "tone";
-
+import "./pianokey.css";
 const PianoKey = (props) => {
   const note = props.note;
   const synth = new Tone.Synth().toDestination();
@@ -13,7 +13,7 @@ const PianoKey = (props) => {
       className="p-4 m-2 h-40 bg-white text-black shadow-lg"
       onClick={() => playSound()}
     >
-      {note}
+      {props.noteKey}
     </button>
   );
 };

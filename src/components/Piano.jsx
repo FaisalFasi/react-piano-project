@@ -3,68 +3,101 @@ import * as Tone from "tone";
 
 import PianoKey from "./PianoKey";
 const Piano = () => {
-  // const [xPos, setXPos] = useState(0);
-  // const [yPos, setYPos] = useState(0);
-
-  const notes = [
-    "C4",
-    "D4",
-    "E4",
-    "F4",
-    "G4",
-    "A4",
-    "B4",
-    "C5",
-    "E5",
-    "F5",
-    "G5",
-    "A5",
-    "B5",
-    "C6",
-  ];
+  // const notes = [
+  //   "C4",
+  //   "D4",
+  //   "E4",
+  //   "F4",
+  //   "G4",
+  //   "A4",
+  //   "B4",
+  //   "C5",
+  //   "E5",
+  //   "F5",
+  //   "G5",
+  //   "A5",
+  //   "B5",
+  //   "C6",
+  // ];
   const keyboardEventKeysToNotes = {
-    a: "C4",
-    s: "D4",
-    d: "E4",
-    f: "F4",
-    g: "G4",
-    h: "A4",
-    j: "B4",
-    k: "C5",
-    l: "E5",
-    m: "F5",
-    n: "G5",
-    b: "A5",
+    0: "A#3",
+    1: "C#3",
+    2: "D3",
+    3: "D#3",
+    4: "E3",
+    5: "F3",
+    6: "F#3",
+    7: "G3",
+    8: "G#3",
+    9: "A3",
+    q: "B3",
+    w: "C4",
+    e: "C#4",
+    r: "D4",
+    t: "D#4",
+    y: "E4",
+    u: "F4",
+    i: "F#4",
+    o: "G4",
+    p: "G#4",
+    a: "A4",
+    s: "A#4",
+    d: "B4",
+    f: "C5",
+    g: "C#5",
+    h: "D5",
+    j: "D#5",
+    k: "E5",
+    l: "F5",
+    ";": "F#5",
+    "'": "G5",
+    z: "G#5",
+    x: "A5",
+    c: "A#5",
     v: "B5",
-    c: "C6",
+    b: "C6",
+    n: "C#6",
+    m: "D6",
+    ",": "D#6",
+    ".": "E6",
+    "/": "F6",
   };
   const keyboardInput = () => {
     document.addEventListener(
       "keydown",
       (event) => {
         var name = event.key;
+        console.log(name);
 
         const synth = new Tone.Synth().toDestination();
 
-        // keyboardEventKeysToNotes[name];
         synth.triggerAttackRelease(keyboardEventKeysToNotes[name], "8n");
 
-        console.log(name);
-
-        // alert(`Key pressed ${name} \r\n Key code value: ${code}`);
+        // alert(`Key pressed ${name} \r\n Key code value: $aa{code}`);
       },
       false
     );
   };
   keyboardInput();
-  // console.log(keyListner());
+
   return (
-    <div className="flex flex-wrap">
-      {notes.map((note) => {
-        return (
-          <PianoKey key={note} keyboardInput={keyboardInput} note={note} />
-        );
-      })}
+    <div className=" ">
+      <h1 className="text-center text-red-500 font-bold text-4xl mt-5">
+        ---- Enjoy Piano ---
+      </h1>
+
+      <div className="grid grid-cols-9">
+        {Object.entries(keyboardEventKeysToNotes).map(([key, note]) => {
+          return (
+            <PianoKey
+              key={note}
+              noteKey={key}
+              keyboardInput={keyboardInput}
+              note={note}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };
